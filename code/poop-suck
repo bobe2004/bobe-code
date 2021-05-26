@@ -1,0 +1,54 @@
+float x = 100;
+float y = 100;
+float gspd = 5;    //Change this variable to adjust the general speed of the ball.
+float xspd = random(-gspd,gspd);
+float yspd = random(-gspd,gspd);
+float r = random(255);
+float g = random(255);
+float b = random(255);
+void setup() {
+  size(800, 600); 
+  frameRate(60);
+  background(0);
+}
+
+void draw() {
+  drawball();
+  moveball();
+  checkwalls();
+  
+  print("X Speed: ");
+  println(xspd);
+  print("Y Speed: ");
+  println(yspd);
+}
+
+void drawball(){
+  background(0);
+  fill(r, g, b);
+  ellipse(x, y, 100, 100);
+}
+
+void checkwalls(){
+  if (x > width - 50 || x < 50) {
+    xspd = -xspd;
+    yspd = yspd + random(1);
+    rngrgb();
+  }
+  if (y > height - 50 || y < 50) {
+    yspd = - yspd;
+    xspd = xspd + random(1);
+    rngrgb();
+  }
+}
+
+void moveball(){
+  x = x + xspd;
+  y = y + yspd;
+}
+
+void rngrgb(){
+ r = random(255);
+ g = random(255);
+ b = random(255);
+}
